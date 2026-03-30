@@ -32,17 +32,6 @@ This project is an end-to-end speech-to-text system designed for Indian-accented
 This project demonstrates the ability to build and deploy a complete ML pipeline from data processing to user interface.
 
 
----
-title: DES646project Fallencrusaders
-emoji: 📊
-colorFrom: indigo
-colorTo: purple
-sdk: gradio
-sdk_version: 5.49.1
-app_file: app.py
-pinned: false
----
-
 | Key          | Value                         |
 |--------------|------------------------------|
 | title        | DES646project Fallencrusaders |
