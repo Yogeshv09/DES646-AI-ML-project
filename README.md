@@ -1,46 +1,81 @@
-# 🎙️ Speech-to-Text AI System
+# 🎙️ Speech-to-Text Model with AI Summary and Denoising
 
-## 📌 Overview
-This project is an end-to-end speech-to-text system designed for Indian-accented and Hindi-English mixed speech. It also provides AI-based summarization and sentiment analysis.
+An end-to-end speech processing application designed for **Indian-accented and Hindi-English code-mixed speech**. The system combines automatic speech recognition, audio denoising, sentiment analysis, text summarization, and subtitle generation into a single browser-based application.
 
-## ⚙️ Tech Stack
-- Python
-- Whisper (Automatic Speech Recognition)
-- BART (Text Summarization)
-- VADER (Sentiment Analysis)
-- Librosa & Noisereduce (Audio Processing)
-- Gradio (Web Interface)
+---
 
-## 🚀 Features
-- 🎤 Speech-to-text transcription
-- 🔇 Audio denoising
+## 📌 Project Overview
+
+This project develops a practical **Automatic Speech Recognition (ASR)** pipeline using a pretrained **Whisper-small** model.
+
+The system is designed to handle speech containing Indian accents and Hindi-English code switching. In addition to transcription, the application provides:
+
+- 🎙️ Speech-to-text transcription
+- 🔇 Optional audio denoising
 - 😊 Sentiment analysis
-- 📝 AI-generated summary
-- 📄 Automatic subtitle (SRT) generation
+- 📝 AI-based text summarization
+- 🎬 SRT subtitle generation
+- 🌐 Browser-based interactive interface
+- ⚡ Parameter-efficient fine-tuning experiments using PEFT/LoRA
 
-## 🧠 Skills Demonstrated
-- Machine Learning
-- Natural Language Processing (NLP)
-- Audio Signal Processing
-- Data Analysis with Python
+The application is implemented using **Python, Hugging Face Transformers, PEFT, Librosa, Noisereduce, VADER, BART, and Gradio**, and can be deployed using Hugging Face Spaces.
 
-## 📁 Project Structure
-- DES646 Project App.py → Main application
-- DES646 Project Requirements.txt → Dependencies
+---
 
-## 🎯 Outcome
-This project demonstrates the ability to build and deploy a complete ML pipeline from data processing to user interface.
+## 🎯 Objectives
 
+- Develop an end-to-end speech-to-text system optimized for **Indian-accented and Hindi-English code-mixed speech**.
+- Adapt a pretrained Whisper-small ASR model for speech recognition.
+- Investigate **parameter-efficient model adaptation** using PEFT and LoRA.
+- Reduce the number of trainable parameters through layer freezing and LoRA.
+- Provide additional NLP capabilities such as sentiment analysis and summarization.
+- Build a browser-accessible ML application for practical ASR deployment.
 
-| Key          | Value                         |
-|--------------|------------------------------|
-| title        | DES646project Fallencrusaders |
-| emoji        | 📊                           |
-| colorFrom    | indigo                       |
-| colorTo      | purple                       |
-| sdk          | gradio                       |
-| sdk_version  | 5.49.1                       |
-| app_file     | app.py                       |
-| pinned       | false                        |
+---
 
-Check out the configuration reference at https://huggingface.co/docs/hub/spaces-config-reference
+## 🏗️ System Architecture
+
+```text
+                    ┌──────────────────┐
+                    │   Audio Input    │
+                    │  WAV / MP3 etc.  │
+                    └────────┬─────────┘
+                             │
+                             ▼
+                 ┌──────────────────────┐
+                 │  Audio Preprocessing │
+                 │                      │
+                 │ Librosa              │
+                 │ Noisereduce (optional)│
+                 └──────────┬───────────┘
+                            │
+                            ▼
+                 ┌──────────────────────┐
+                 │   Whisper-small      │
+                 │   ASR Model          │
+                 │                      │
+                 │ Fine-tuned / PEFT    │
+                 │ LoRA Experiments     │
+                 └──────────┬───────────┘
+                            │
+                            ▼
+                     ┌──────────────┐
+                     │ Transcription│
+                     └──────┬───────┘
+                            │
+             ┌──────────────┼──────────────┐
+             │              │              │
+             ▼              ▼              ▼
+        ┌─────────┐    ┌─────────┐    ┌──────────┐
+        │  VADER  │    │  BART   │    │   SRT    │
+        │Sentiment│    │Summary  │    │Subtitles │
+        └────┬────┘    └────┬────┘    └─────┬────┘
+             │              │               │
+             └──────────────┼───────────────┘
+                            ▼
+                  ┌───────────────────┐
+                  │    Gradio Web UI  │
+                  └─────────┬─────────┘
+                            │
+                            ▼
+                         User
